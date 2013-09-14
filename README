@@ -1,0 +1,10 @@
+vagrant-dockomatic
+==================
+
+Vagrant environment that runs Ubuntu, pulls in Docker containers via Ansible provisioning.
+
+usage
+=====
+vagrant up
+vagrant ssh
+docker run ubuntu echo "Hello World"
