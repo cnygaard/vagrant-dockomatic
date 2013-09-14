@@ -1,0 +1,35 @@
+# contents of /ansible/playbook.yml
+---
+- hosts: localhost
+  tasks:
+    - name: Set up authorized_keys for the deploy user
+      authorized_key: user=root key='$FILE(/ansible/id_dsa.pub)' 
+    - name: ensure ntpd is at the latest version
+      action: apt pkg=ntp state=latest
+      notify:
+      - restart ntpd
+    - name: Install git 
+      action: apt pkg=git state=latest
+#    - include: roles/nodejs/nodejs.yml
+    - include: roles/docker/docker.yml
+    #- name: Install HTTP
+    #  action: apt pkg=apache2 state=latest
+    #  notify:
+    #  - restart apache2
+    #- name: Install PHP-pear
+    #  action: apt pkg=php-pear state=latest
+    # Install NodeJS
+#    - include: roles/nodejs/karma.yml
+#    - include: roles/emberjs/emberjs.yml
+#    - name: Install RubyGems
+#      action: apt pkg=rubygems state=latest
+#    - name: Install Ruby Bundler
+#      action: apt pkg=ruby-bundler state=latest
+
+    
+
+  handlers:
+    - name: restart ntpd
+      service: name=ntpd state=restarted
+   # - name: restart apache2
+   #   service: name=apache2 state=restarted

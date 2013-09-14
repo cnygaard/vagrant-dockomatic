@@ -1,0 +1,14 @@
+- name: Install Raring Kernel
+  action: apt pkg=linux-image-generic-lts-raring state=latest
+
+- name: Install Raring kernel headers
+  action: apt pkg=linux-headers-generic-lts-raring state=latest
+
+- name: Add Docker APT Key 
+  apt_key: id=A88D21E9 url=https://get.docker.io/gpg state=present
+
+- name: Add Docker apt repository
+  lineinfile: dest=/etc/apt/sources.list regexp="^deb https://get.docker.io" line="deb https://get.docker.io/ubuntu docker main" 
+
+- name: Add Docker package
+  apt: pkg=lxc-docker state=latest update_cache=yes
