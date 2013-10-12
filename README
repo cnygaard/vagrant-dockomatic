@@ -1,10 +1,17 @@
-vagrant-dockomatic
+Vagrant-dockomatic
 ==================
 
 Vagrant environment that runs Ubuntu, pulls in Docker containers via Ansible provisioning.
 
-usage
-=====
+System requirements
+===================
+You need to have Virtualbox version 4.2.8 or greater for the virtualbox guest addtions to build correctly with kernel 3.8+
+
+Vagrant Usage
+=============
 vagrant up
 vagrant ssh
+
+Docker Usage
+============
 docker run ubuntu echo "Hello World"
